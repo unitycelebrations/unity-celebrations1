@@ -118,42 +118,68 @@
     <p>Your trusted partner for community events</p>
   </header>
 
-  <main>
-    <section class="form-section">
-      <h2>Vendor Registration Form</h2>
-      <form id="vendorForm">
-        <label for="businessName">Business Name</label>
-        <input type="text" name="Business Name" id="businessName" required />
+  <main>   
+<section class="form-section">
+  <h2>Vendor Registration Form</h2>
+  <form id="vendorForm">
+    <label for="businessName">Business Name *</label>
+    <input type="text" id="businessName" name="Business Name" required>
 
-        <label for="contactPerson">Contact Person</label>
-        <input type="text" name="Contact Person" id="contactPerson" required />
+    <label for="vendorCategory">Vendor Category *</label>
+    <input type="text" id="vendorCategory" name="Vendor Category" required>
 
-        <label for="phone">Phone Number</label>
-        <input type="tel" name="Phone" id="phone" required />
+    <label for="vendorType">Type of Vendor *</label>
+    <select id="vendorType" name="Vendor Type" required>
+      <option disabled selected value="">-- Select Vendor Type --</option>
+      <option>Food</option>
+      <option>Clothing</option>
+      <option>Accessories</option>
+      <option>Home Decor</option>
+      <option>Henna</option>
+      <option>Other</option>
+    </select>
 
-        <label for="email">Email</label>
-        <input type="email" name="Email" id="email" required />
+    <label for="productDescription">Brief Description of Products/Services *</label>
+    <textarea id="productDescription" name="Product Description" required></textarea>
 
-        <label for="productType">Type of Product or Service</label>
-        <input type="text" name="Product Type" id="productType" required />
+    <label for="participationDays">Participation Days *</label>
+    <select id="participationDays" name="Participation Days" required>
+      <option value="Saturday Only">Saturday, July 26 (10AM-7PM)</option>
+      <option value="Sunday Only">Sunday, July 27 (10AM-6PM)</option>
+      <option value="Both Days">Both Days</option>
+    </select>
 
-        <label for="socialLink">Instagram / Facebook Page Link</label>
-        <input type="url" name="Social Media" id="socialLink" />
+    <label for="numTables">Number of Tables Required *</label>
+    <select id="numTables" name="Number of Tables" required>
+      <option value="1">1 Table</option>
+      <option value="2">2 Tables (+$25/day)</option>
+      <option value="3">3 Tables (+$50/day)</option>
+    </select>
 
-        <label for="specialNeeds">Special Requests (Power, Corner Booth, etc.)</label>
-        <textarea name="Special Needs" id="specialNeeds"></textarea>
+    <label for="specialRequests">Special Requirements or Requests</label>
+    <textarea id="specialRequests" name="Special Requirements"></textarea>
 
-        <div class="terms">
-          <input type="checkbox" id="terms" required />
-          <label for="terms">
-            I agree to the terms and conditions: I understand that the table will only be confirmed upon payment. No refunds unless the event is canceled by the organizer. Setup starts one hour before the event. All vendors must clean up after the event.
-          </label>
-        </div>
+    <p><strong>Table Rates:</strong><br>
+    Both days (July 26 & 27): $150<br>
+    Single day: $100<br>
+    Extra table: $25/day</p>
 
-        <button type="submit">Submit Registration</button>
-      </form>
-      <p id="responseMsg"></p>
-    </section>
+    <p><strong>E-Transfer Instructions:</strong><br>
+    Send payment to: <b>celebrationsofunity@gmail.com</b><br>
+    In the message field, include:<br>
+    - Your Business Name<br>
+    - Number of days<br>
+    - Number of tables</p>
+
+    <p><strong>Estimated Payment:</strong><br>
+    Based on your selections: $0</p>
+
+    <label class="terms"><input type="checkbox" required> I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> *</label>
+
+    <button type="submit">Submit Registration</button>
+  </form>
+  <p id="responseMsg"></p>
+</section>
   </main>
 
   <footer>
