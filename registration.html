@@ -105,7 +105,7 @@
         
     <div style="margin-bottom: 1.5rem;">
       <label style="display: flex; align-items: center;">
-        <input type="checkbox" name="entry.11" required style="margin-right: 10px;" />
+        <input type="checkbox" id="terms" name="entry.11" required style="margin-right: 10px;" />
         <span>I have read and agree to the <a href="/terms.html" target="_blank">Terms and Conditions</a></span>
       </label>
     </div>
@@ -137,5 +137,31 @@
       document.getElementById('costDisplay').innerText = `$${cost}`;
     }
   </script>
+	<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzNsCO1A6rixrVpdT1z2jWN1sF6Vgxuz1YnFBXSm55s4S9Jpn-2T-qkTEpqLIKRoayNGg/exec';
+  const form = document.getElementById('vendorForm');
+  const msg = document.getElementById('responseMsg');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!document.getElementById('terms').checked) {
+      msg.textContent = "You must agree to the terms and conditions.";
+      return;
+    }
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+      .then(response => {
+        msg.textContent = "Thank you! Your registration has been submitted.";
+        form.reset();
+      })
+      .catch(error => {
+        msg.textContent = "Error! Submission failed.";
+        console.error('Error!', error.message);
+      });
+  });
+</script>
+<p id="responseMsg" style="text-align:center; margin-top:1rem; color:green;"></p>
 </body>
 </html>
