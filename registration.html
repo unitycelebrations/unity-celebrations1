@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unity Celebrations - Vendor Registration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      background-color: #3b0a58;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .form-section h2 {
+      text-align: center;
+      color: #3b0a58;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea, select {
+      margin-bottom: 1rem;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    label {
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    button {
+      padding: 0.75rem;
+      background-color: #3b0a58;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4d116d;
+    }
+    .terms {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 1rem;
+    }
+    .terms input[type="checkbox"] {
+      margin-right: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #3b0a58;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Unity Celebrations</h1>
+    <p>Your trusted partner for community events</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Vendor Registration Form</h2>
+      <form id="vendorForm">
+        <label for="businessName">Business Name</label>
+        <input type="text" name="Business Name" id="businessName" required />
+
+        <label for="contactPerson">Contact Person</label>
+        <input type="text" name="Contact Person" id="contactPerson" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" name="Phone" id="phone" required />
+
+        <label for="email">Email</label>
+        <input type="email" name="Email" id="email" required />
+
+        <label for="productType">Type of Product or Service</label>
+        <input type="text" name="Product Type" id="productType" required />
+
+        <label for="socialLink">Instagram / Facebook Page Link</label>
+        <input type="url" name="Social Media" id="socialLink" />
+
+        <label for="specialNeeds">Special Requests (Power, Corner Booth, etc.)</label>
+        <textarea name="Special Needs" id="specialNeeds"></textarea>
+
+        <div class="terms">
+          <input type="checkbox" id="terms" required />
+          <label for="terms">
+            I agree to the terms and conditions: I understand that the table will only be confirmed upon payment. No refunds unless the event is canceled by the organizer. Setup starts one hour before the event. All vendors must clean up after the event.
+          </label>
+        </div>
+
+        <button type="submit">Submit Registration</button>
+      </form>
+      <p id="responseMsg"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Unity Celebrations. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzNsCO1A6rixrVpdT1z2jWN1sF6Vgxuz1YnFBXSm55s4S9Jpn-2T-qkTEpqLIKRoayNGg/exec';
+    const form = document.getElementById('vendorForm');
+    const msg = document.getElementById('responseMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!document.getElementById('terms').checked) {
+        msg.textContent = "You must agree to the terms and conditions.";
+        return;
+      }
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+        .then(response => {
+          msg.textContent = "Thank you! Your registration has been submitted.";
+          form.reset();
+        })
+        .catch(error => {
+          msg.textContent = "Error! Submission failed.";
+          console.error('Error!', error.message);
+        });
+    });
+  </script>
+</body>
+</html>
