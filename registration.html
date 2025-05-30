@@ -35,146 +35,107 @@
 </nav>
 </div>
 </header>
-<section class="form-section">
-  <h2>Vendor Registration Form</h2>
-  <form id="vendorForm">
-    <label for="businessName">Business Name *</label>
-    <input type="text" id="businessName" name="Business Name" required>
+  <section class="form-section">
+    <div class="form-container">
+      <h2>Vendor Registration Form</h2>
+      <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="_self">
+        <label>Business Name</label>
+        <input type="text" name="entry.1" required />
 
-    <label for="vendorCategory">Vendor Category *</label>
-    <input type="text" id="vendorCategory" name="Vendor Category" required>
+        <label>Contact Name</label>
+        <input type="text" name="entry.2" required />
 
-    <label for="vendorType">Type of Vendor *</label>
+        <label>Phone Number</label>
+        <input type="text" name="entry.3" required />
+
+        <label>Email Address</label>
+        <input type="email" name="entry.4" required />
+
+        <label for="vendorType">Type of Vendor *</label>
     <select id="vendorType" name="Vendor Type" required>
       <option disabled selected value="">-- Select Vendor Type --</option>
       <option>Food</option>
       <option>Clothing</option>
-      <option>Accessories</option>
+      <option>Jewelry</option>
       <option>Home Decor</option>
       <option>Henna</option>
+	  <option>Art</option>
+	  <option>Craft</option>
+	  <option>Beauty Product</option>
       <option>Other</option>
     </select>
 
-    <label for="productDescription">Brief Description of Products/Services *</label>
-    <textarea id="productDescription" name="Product Description" required></textarea>
+        <label>Product Description</label>
+        <textarea name="entry.7" rows="4" required></textarea>
 
-    <label for="participationDays">Participation Days *</label>
-    <select id="participationDays" name="Participation Days" required>
-      <option value="Saturday Only">Saturday, July 26 (10AM-7PM)</option>
-      <option value="Sunday Only">Sunday, July 27 (10AM-6PM)</option>
-      <option value="Both Days">Both Days</option>
-    </select>
+        <label>Participation Days</label>
+        <select name="entry.8" id="days" required onchange="calculateCost()">
+          <option value="Saturday">Saturday</option>
+          <option value="Sunday">Sunday</option>
+          <option value="Both Days">Both Days</option>
+        </select>
 
-    <label for="numTables">Number of Tables Required *</label>
-    <select id="numTables" name="Number of Tables" required>
-      <option value="1">1 Table</option>
-      <option value="2">2 Tables (+$25/day)</option>
-      <option value="3">3 Tables (+$50/day)</option>
-    </select>
+        <label>Number of Tables Required</label>
+        <select name="entry.9" id="tables" required onchange="calculateCost()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
 
-    <label for="specialRequests">Special Requirements or Requests</label>
-    <textarea id="specialRequests" name="Special Requirements"></textarea>
+        <label>Special Requirements or Requests</label>
+        <textarea name="entry.10" rows="3"></textarea>
 
-    <p><strong>Table Rates:</strong><br>
-    Both days (July 26 & 27): $150<br>
-    Single day: $100<br>
-    Extra table: $25/day</p>
+        <div class="note-box">
+          <strong>Table Rates:</strong><br/>
+          Both days (July 26 & 27): $150<br/>
+          Single day: $75<br/>
+          Extra table: $25/day<br/><br/>
 
-    <p><strong>E-Transfer Instructions:</strong><br>
-    Send payment to: <b>celebrationsofunity@gmail.com</b><br>
-    In the message field, include:<br>
-    - Your Business Name<br>
-    - Number of days<br>
-    - Number of tables</p>
+          <strong>E-Transfer Instructions:</strong><br/>
+          Send payment to: <strong>celebrationsofunity@gmail.com</strong><br/>
+          In the message field, include:<br/>
+          - Your Business Name<br/>
+          - Number of days<br/>
+          - Number of tables<br/><br/>
 
-    <p><strong>Estimated Payment:</strong><br>
-    Based on your selections: $0</p>
+          <strong>Estimated Payment:</strong><br/>
+          Based on your selections: <span id="costDisplay">$0</span>
+        </div>
 
-    <label class="terms"><input type="checkbox" required> I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> *</label>
+        
+    <div style="margin-bottom: 1.5rem;">
+      <label style="display: flex; align-items: center;">
+        <input type="checkbox" name="entry.11" required style="margin-right: 10px;" />
+        <span>I have read and agree to the <a href="/terms.html" target="_blank">Terms and Conditions</a></span>
+      </label>
+    </div>
+    
 
-    <button type="submit">Submit Registration</button>
-  </form>
-  <p id="responseMsg"></p>
-</section>
-  </main>
+        <div style="text-align: center; margin-top: 1rem;"><button type="submit">Submit Registration</button></div>
+      </form>
+    </div>
+  </section>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzNsCO1A6rixrVpdT1z2jWN1sF6Vgxuz1YnFBXSm55s4S9Jpn-2T-qkTEpqLIKRoayNGg/exec';
-    const form = document.getElementById('vendorForm');
-    const msg = document.getElementById('responseMsg');
+    function calculateCost() {
+      const days = document.getElementById('days').value;
+      const tables = parseInt(document.getElementById('tables').value) || 1;
+      let cost = 0;
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      if (!document.getElementById('terms').checked) {
-        msg.textContent = "You must agree to the terms and conditions.";
-        return;
+      if (days === 'Both Days') {
+        cost = 150;
+        if (tables > 1) {
+          cost += (tables - 1) * 25 * 2;
+        }
+      } else {
+        cost = 75;
+        if (tables > 1) {
+          cost += (tables - 1) * 25;
+        }
       }
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new FormData(form)
-      })
-        .then(response => {
-          msg.textContent = "Thank you! Your registration has been submitted.";
-          form.reset();
-        })
-        .catch(error => {
-          msg.textContent = "Error! Submission failed.";
-          console.error('Error!', error.message);
-        });
-    });
-  </script>
-</body>
-</html>
 
-  </main>
-  <footer class="site-footer">
-<div class="container">
-<div class="footer-content">
-<div class="footer-logo">
-<img alt="Unity Celebrations Logo" class="footer-logo-img" src="images/unity_celebrations_logo.png"/>
-<p>Unity Celebrations</p>
-</div>
-<div class="footer-links">
-<h3>Quick Links</h3>
-<ul>
-<li>
-<a href="index.html">Home</a>
-</li>
-<li>
-<a href="registration.html">Vendor Registration</a>
-</li>
-<li>
-<a href="terms.html">Terms &amp; Conditions</a>
-</li>
-<li>
-<a href="contact.html">Contact</a>
-</li>
-</ul>
-</div>
-<div class="footer-contact">
-<h3>Contact Us</h3>
-<p>
-<i class="fas fa-envelope"></i>
-                            celebrationsofunity@gmail.com
-                        </p>
-<p>
-<i class="fas fa-phone"></i>
-                            Sadaf Arshad: 780-224-8084
-                        </p>
-<p>
-<i class="fas fa-phone"></i>
-                            Saurin Ajmeri: 780-803-8076
-                        </p>
-</div>
-</div>
-<div class="footer-bottom">
-<p>
-                        ©<span id="current-year">2025</span>
-                        Unity Celebrations. All rights reserved.
-                    </p>
-</div>
-</div>
-</footer>
-  <script src="js/script.js"></script>
+      document.getElementById('costDisplay').innerText = `$${cost}`;
+    }
+  </script>
 </body>
 </html>
