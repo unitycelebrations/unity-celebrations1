@@ -157,8 +157,8 @@
                             <div class="payment-details">
                                 <h4>Table Rates:</h4>
                                 <ul>
-                                    <li>Both days (July 26 & 27): $200</li>
-                                    <li>Single day: $100</li>
+                                    <li>Both days (July 26 & 27): $150</li>
+                                    <li>Single day: $75</li>
                                     <li>Extra table: $25/day</li>
                                 </ul>
                                 
@@ -262,13 +262,13 @@
                 let extraTableCost = 0;
                 
                 if (bothDaysCheckbox.checked) {
-                    basePrice = 200;
+                    basePrice = 150;
                     extraTableCost = (tableCount - 1) * 50; // $25/day * 2 days for each extra table
                 } else if (saturdayCheckbox.checked && sundayCheckbox.checked) {
-                    basePrice = 200;
+                    basePrice = 150;
                     extraTableCost = (tableCount - 1) * 50; // $25/day * 2 days for each extra table
                 } else if (saturdayCheckbox.checked || sundayCheckbox.checked) {
-                    basePrice = 100;
+                    basePrice = 75;
                     extraTableCost = (tableCount - 1) * 25; // $25 for each extra table
                 }
                 
