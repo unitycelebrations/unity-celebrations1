@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,58 +51,144 @@
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Vendor Registration Form</h2>
-    <form id="vendorForm">
-      <label>Business Name</label>
-      <input type="text" name="Business Name" required>
-
-      <label>Contact Name</label>
-      <input type="text" name="Contact Name" required>
-
-      <label>Phone Number</label>
-      <input type="text" name="Phone Number" required>
-
-      <label>Email Address</label>
-      <input type="email" name="Email Address" required>
-
-      <label>Vendor Category</label>
-      <input type="text" name="Vendor Catagory" required>
-
-      <label>Vendor Type</label>
-      <input type="text" name="Vendor Type" required>
-
-      <label>Product Description</label>
-      <textarea name="Product Discription" rows="3" required></textarea>
-
-      <label>Participation Days</label>
-      <select name="Participation Days" id="days" required onchange="calculateCost()">
-        <option value="">-- Select --</option>
-        <option value="Saturday, July 26 (10AM-7PM)">Saturday</option>
-        <option value="Sunday, July 27 (10AM-6PM)">Sunday</option>
-        <option value="Both Days">Both Days</option>
-      </select>
-
-      <label>Number of Tables Required</label>
-      <input type="number" name="Number of Tables Required" min="1" value="1" id="tables" onchange="calculateCost()" required>
-
-      <label>Special Requirements or Requests</label>
-      <textarea name="Special Requirements or Requests" rows="3"></textarea>
-
-      <div class="note-box">
-        <strong>Table Rates:</strong><br>
-        Saturday or Sunday: $75 each<br>
-        Both Days: $150<br>
-        Extra table: $25/day<br><br>
-
-        <strong>E-Transfer Instructions:</strong><br>
-        Send to: celebrationsofunity@gmail.com<br>
-        Message: Your Business Name, Days, and Tables
-      </div>
-
-      <p><strong>Estimated Cost:</strong> <span id="costDisplay">$0</span></p>
-
-      <label><input type="checkbox" id="terms" required> I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a></label>
+  <!-- Business Information -->
+                        <div class="form-section">
+                            <h3>Business Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="businessName">Business/Vendor Name *</label>
+                                <input type="text" id="businessName" name="Business Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactPerson">Contact Person's Name *</label>
+                                <input type="text" id="contactPerson" name="Contact Person" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="Phone" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="Email" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vendor Category -->
+                        <div class="form-section">
+                            <h3>Vendor Category</h3>
+                            
+                            <div class="form-group">
+                                <label for="vendorType">Type of Vendor *</label>
+                                <select id="vendorType" name="Vendor Type" required>
+                                    <option value="">-- Select Vendor Type --</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Jewelry">Jewelry</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Crafts">Crafts</option>
+                                    <option value="Henna">Henna Artist</option>
+                                    <option value="Beauty">Beauty Products</option>
+                                    <option value="Home">Home Goods</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productDescription">Brief Description of Products/Services *</label>
+                                <textarea id="productDescription" name="Product Description" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Booking Details -->
+                        <div class="form-section">
+                            <h3>Booking Details</h3>
+                            
+                            <div class="form-group">
+                                <label>Participation Days *</label>
+                                <div class="checkbox-group" id="daysGroup">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="saturday" name="Days" value="Saturday">
+                                        <label for="saturday">Saturday, July 26 (10AM-7PM)</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sunday" name="Days" value="Sunday">
+                                        <label for="sunday">Sunday, July 27 (10AM-6PM)</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="bothDays" name="Days" value="Both Days">
+                                        <label for="bothDays">Both Days</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="daysError" style="display: none;">Please select at least one day</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tableCount">Number of Tables Required *</label>
+                                <select id="tableCount" name="Table Count" required>
+                                    <option value="1">1 Table</option>
+                                    <option value="2">2 Tables</option>
+                                    <option value="3">3 Tables</option>
+                                    <option value="4">4 Tables</option>
+                                    <option value="5">5 Tables</option>
+                                </select>
+                                <small>Note: Extra tables cost $25/day each</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="specialRequirements">Special Requirements or Requests</label>
+                                <textarea id="specialRequirements" name="Special Requirements" rows="2"></textarea>
+                                <small>Power outlets, wall space, etc. (We'll try to accommodate but cannot guarantee all requests)</small>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Information -->
+                        <div class="form-section payment-section">
+                            <h3>Payment Information</h3>
+                            
+                            <div class="payment-details">
+                                <h4>Table Rates:</h4>
+                                <ul>
+                                    <li>Both days (July 26 & 27): $150</li>
+                                    <li>Single day: $100</li>
+                                    <li>Extra table: $25/day</li>
+                                </ul>
+                                
+                                <div class="payment-instructions">
+                                    <h4>E-Transfer Instructions:</h4>
+                                    <ol>
+                                        <li>Send payment to: <strong>celebrationsofunity@gmail.com</strong></li>
+                                        <li>In the message field, include:
+                                            <ul>
+                                                <li>Your Business Name</li>
+                                                <li>Number of days</li>
+                                                <li>Number of tables</li>
+                                            </ul>
+                                        </li>
+                                        <li>Your registration will be confirmed once payment is received</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="payment-amount">
+                                    <h4>Estimated Payment:</h4>
+                                    <p>Based on your selections: <span id="paymentAmount">$0</span></p>
+                                    <input type="hidden" name="Estimated Payment" id="paymentAmountHidden">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms Agreement -->
+                        <div class="form-section">
+                            <div class="form-group terms-agreement">
+                                <input type="checkbox" id="termsAgreement" name="Terms Agreement" value="Agreed" required>
+                                <label for="termsAgreement">I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> *</label>
+                            </div>
+                            <div class="error-message" id="termsError" style="display: none;">You must agree to the terms and conditions</div>
+                        </div>
 
       <br><br>
       <button type="submit">Submit</button>
