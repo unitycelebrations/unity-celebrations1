@@ -2,6 +2,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Edmonton Multi Cultural Bazaar</title>
+    <meta name="description" content="Terms and conditions for vendors participating in the Edmonton Multi Cultural Bazaar. Review our guidelines for a successful event experience.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="images/unity_celebrations_logo.png" alt="Unity Celebrations Logo" class="logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="registration.html">Vendor Registration</a></li>
+                    <li class="active"><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vendor Registration - Unity Celebrations</title>
@@ -49,8 +81,8 @@
       margin-bottom: 1rem;
     }
   </style>
-</head>
-<body>
+<div class="form-wrapper" style="background-color:#f5f5f5;padding:2rem;">
+  <div class="form-container" style="background:white;max-width:800px;margin:auto;padding:2rem;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
   <section class="form-section">
     <div class="form-container">
       <h2>Vendor Registration Form</h2>
@@ -157,7 +189,7 @@
                                 <h4>Table Rates:</h4>
                                 <ul>
                                     <li>Both days (July 26 & 27): $150</li>
-                                    <li>Single day: $100</li>
+                                    <li>Single day: $75</li>
                                     <li>Extra table: $25/day</li>
                                 </ul>
                                 
@@ -197,56 +229,98 @@
       <button type="submit">Submit</button>
       <p id="responseMsg"></p>
     </form>
+</div>
+</div>
   </div>
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyF3UGQERRSUmMQ99oRM4mcD1VRUrqDnsmYKJkFKRxQUlFx5CtD-WNFTYZBchRzYdY4JQ/exec';
-    const form = document.getElementById('vendorForm');
-    const msg = document.getElementById('responseMsg');
+  
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyF3UGQERRSUmMQ99oRM4mcD1VRUrqDnsmYKJkFKRxQUlFx5CtD-WNFTYZBchRzYdY4JQ/exec';
+  const form = document.getElementById('vendorForm');
+  const msg = document.getElementById('responseMsg');
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      if (!document.getElementById('terms').checked) {
-        msg.textContent = "You must agree to the terms and conditions.";
-        return;
-      }
-      fetch(scriptURL, {
-        method: 'POST',
-        body: new FormData(form)
-      })
-      .then(response => {
-        msg.textContent = "Thank you! Your registration has been submitted.";
-        form.reset();
-        calculateCost(); // Reset cost
-      })
-      .catch(error => {
-        msg.textContent = "Error! Submission failed.";
-        console.error('Error!', error.message);
-      });
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!document.getElementById('termsAgreement').checked) {
+      msg.textContent = "You must agree to the terms and conditions.";
+      return;
+    }
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      window.location.href = "https://unitycelebrations.com/thank-you";
+    })
+    .catch(error => {
+      msg.textContent = "Error! Submission failed.";
+      console.error('Error!', error.message);
     });
+  });
 
-    function calculateCost() {
-      const days = document.getElementById("days").value.toLowerCase();
-      const tables = parseInt(document.getElementById("tables").value || "1");
-      let cost = 0;
+  function calculateCost() {
+    const saturday = document.getElementById('saturday').checked;
+    const sunday = document.getElementById('sunday').checked;
+    const both = document.getElementById('bothDays').checked;
+    const tableCount = parseInt(document.getElementById('tableCount').value || "1");
+    let cost = 0;
 
-      if (days.includes("both")) {
-        cost += 150;
-      } else {
-        if (days.includes("saturday")) cost += 75;
-        if (days.includes("sunday")) cost += 75;
-      }
-
-      if (tables > 1) {
-        const extra = tables - 1;
-        const numDays = days.includes("both") ? 2 : (days.includes("saturday") + days.includes("sunday"));
-        cost += extra * 25 * numDays;
-      }
-
-      document.getElementById("costDisplay").textContent = `$${cost}`;
+    let selectedDays = 0;
+    if (both) {
+      cost += 150;
+      selectedDays = 2;
+    } else {
+      if (saturday) { cost += 75; selectedDays += 1; }
+      if (sunday) { cost += 75; selectedDays += 1; }
     }
 
-    window.onload = calculateCost;
-  </script>
+    if (tableCount > 1) {
+      const extra = tableCount - 1;
+      cost += extra * 25 * selectedDays;
+    }
+
+    document.getElementById('paymentAmount').textContent = `$${cost}`;
+    document.getElementById('paymentAmountHidden').value = cost;
+  }
+
+  document.getElementById('saturday').addEventListener('change', calculateCost);
+  document.getElementById('sunday').addEventListener('change', calculateCost);
+  document.getElementById('bothDays').addEventListener('change', calculateCost);
+  document.getElementById('tableCount').addEventListener('change', calculateCost);
+  window.onload = calculateCost;
+</script>
+ <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/unity_celebrations_logo.png" alt="Unity Celebrations Logo" class="footer-logo-img">
+                    <p>Unity Celebrations</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="registration.html">Vendor Registration</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> celebrationsofunity@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> Sadaf Arshad: 780-224-8084</p>
+                    <p><i class="fas fa-phone"></i> Saurin Ajmeri: 780-803-8076</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> Unity Celebrations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+  <script src="js/script.js"></script>
 </body>
 </html>
