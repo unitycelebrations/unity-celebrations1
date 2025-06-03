@@ -25,43 +25,222 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="registration.html">Vendor Registration</a></li>
-                    <li class="active"><a href="terms.html">Terms & Conditions</a></li>
+                    <li class="active"><a href="registration.html">Vendor Registration</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-  <head>
+    <!-- Main Content -->
+    <main>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vendor Registration - Unity Celebrations</title>
-  <link rel="icon" href="favicon.ico">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-    }
-      iframe {
-      display: block;
-      margin: 20px auto;
-      border: none;
-      width: 95%;
-      height: 1850px;
-      max-width: 1000px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdb-pmlM4uBh4rIpjkncWzdgFzT-9lyjd8FEzo2YOrEsuchvg/viewform?embedded=true">Loading…</iframe>
+ <div class="form-wrapper" style="background-color:#f5f5f5;padding:2rem;">
+  <div class="form-container" style="background:white;max-width:800px;margin:auto;padding:2rem;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
+  <section class="form-section">
+    <div class="form-container">
+      <h2>Vendor Registration Form</h2>
+      <form id="vendorForm">
+  <!-- Business Information -->
+                       <h3>Business Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="businessName">Business Name *</label>
+                                <input type="text" id="businessName" name="Business Name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactName">Contact Name *</label>
+                                <input type="text" id="contactName" name="Contact Name" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="Phone" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="Email" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Vendor Category -->
+                        <div class="form-section">
+                            <h3>Vendor Category</h3>
+                            
+                            <div class="form-group">
+                                <label for="vendorType">Type of Vendor *</label>
+                                <select id="vendorType" name="Vendor Type" required>
+                                    <option value="">-- Select Vendor Type --</option>
+                                    <option value="Food">Food</option>
+                                    <option value="Clothing">Clothing</option>
+                                    <option value="Jewelry">Jewelry</option>
+                                    <option value="Art">Art</option>
+                                    <option value="Crafts">Crafts</option>
+                                    <option value="Henna">Henna Artist</option>
+                                    <option value="Beauty">Beauty Products</option>
+                                    <option value="Home">Home Goods</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productDescription">Product Description *</label>
+                                <textarea id="productDescription" name="Product Description" rows="3" required></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Booking Details -->
+                        <div class="form-section">
+                            <h3>Booking Details</h3>
+                            
+                            <div class="form-group">
+                                <label>Participation Days *</label>
+                                <div class="checkbox-group" id="daysGroup">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="saturday" name="Days" value="Saturday">
+                                        <label for="saturday">Saturday, July 26 (10AM-7PM)</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sunday" name="Days" value="Sunday">
+                                        <label for="sunday">Sunday, July 27 (10AM-6PM)</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="bothDays" name="Days" value="Both Days">
+                                        <label for="bothDays">Both Days</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="daysError" style="display: none;">Please select at least one day</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="tableCount">Tables Required *</label>
+                                <select id="tableCount" name="Table Count" required>
+                                    <option value="1">1 Table</option>
+                                    <option value="2">2 Tables</option>
+                                    <option value="3">3 Tables</option>
+                                    <option value="4">4 Tables</option>
+                                    <option value="5">5 Tables</option>
+                                </select>
+                                <small>Note: Extra tables cost $25/day each</small>
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Payment Information -->
+                        <div class="form-section payment-section">
+                            <h3>Payment Information</h3>
+                            
+                            <div class="payment-details">
+                                <h4>Table Rates:</h4>
+                                <ul>
+                                    <li>Both days (July 26 & 27): $150</li>
+                                    <li>Single day: $75</li>
+                                    <li>Extra table: $25/day</li>
+                                </ul>
+                                
+                                <div class="payment-instructions">
+                                    <h4>E-Transfer Instructions:</h4>
+                                    <ol>
+                                        <li>Send payment to: <strong>celebrationsofunity@gmail.com</strong></li>
+                                        <li>In the message field, include:
+                                            <ul>
+                                                <li>Your Business Name</li>
+                                                <li>Number of days</li>
+                                                <li>Number of tables</li>
+                                            </ul>
+                                        </li>
+                                        <li>Your registration will be confirmed once payment is received</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="payment-amount">
+                                    <h4>Estimated Payment:</h4>
+                                    <p>Based on your selections: <span id="paymentAmount">$0</span></p>
+                                    <input type="hidden" name="Estimated Payment" id="paymentAmountHidden">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms Agreement -->
+                        <div class="form-section">
+                            <div class="form-group terms-agreement">
+                                <input type="checkbox" id="termsAgreement" name="Terms Agreement" value="Agreed" required>
+                                <label for="termsAgreement">I have read and agree to the <a href="terms.html" target="_blank">Terms and Conditions</a> *</label>
+                            </div>
+                            <div class="error-message" id="termsError" style="display: none;">You must agree to the terms and conditions</div>
+                        </div>
 
-  <!-- Footer -->
+      <br><br>
+      <button type="submit">Submit</button>
+      <p id="responseMsg"></p>
+    </form>
+</div>
+</div>
+  </div>
+
+  
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyF3UGQERRSUmMQ99oRM4mcD1VRUrqDnsmYKJkFKRxQUlFx5CtD-WNFTYZBchRzYdY4JQ/exec';
+  const form = document.getElementById('vendorForm');
+  const msg = document.getElementById('responseMsg');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!document.getElementById('termsAgreement').checked) {
+      msg.textContent = "You must agree to the terms and conditions.";
+      return;
+    }
+    fetch(scriptURL, {
+      method: 'POST',
+      body: new FormData(form)
+    })
+    .then(response => {
+      window.location.href = "https://unitycelebrations.com/thank-you";
+    })
+    .catch(error => {
+      msg.textContent = "Error! Submission failed.";
+      console.error('Error!', error.message);
+    });
+  });
+
+  function calculateCost() {
+    const saturday = document.getElementById('saturday').checked;
+    const sunday = document.getElementById('sunday').checked;
+    const both = document.getElementById('bothDays').checked;
+    const tableCount = parseInt(document.getElementById('tableCount').value || "1");
+    let cost = 0;
+
+    let selectedDays = 0;
+    if (both) {
+      cost += 150;
+      selectedDays = 2;
+    } else {
+      if (saturday) { cost += 75; selectedDays += 1; }
+      if (sunday) { cost += 75; selectedDays += 1; }
+    }
+
+    if (tableCount > 1) {
+      const extra = tableCount - 1;
+      cost += extra * 25 * selectedDays;
+    }
+
+    document.getElementById('paymentAmount').textContent = `$${cost}`;
+    document.getElementById('paymentAmountHidden').value = cost;
+  }
+
+  document.getElementById('saturday').addEventListener('change', calculateCost);
+  document.getElementById('sunday').addEventListener('change', calculateCost);
+  document.getElementById('bothDays').addEventListener('change', calculateCost);
+  document.getElementById('tableCount').addEventListener('change', calculateCost);
+  window.onload = calculateCost;
+</script>
+ <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
@@ -93,5 +272,6 @@
             </div>
         </div>
     </footer>
+  <script src="js/script.js"></script>
 </body>
 </html>
