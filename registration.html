@@ -2,6 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Edmonton Multi Cultural Bazaar</title>
+    <meta name="description" content="Terms and conditions for vendors participating in the Edmonton Multi Cultural Bazaar. Review our guidelines for a successful event experience.">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="images/unity_celebrations_logo.png" alt="Unity Celebrations Logo" class="logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="registration.html">Vendor Registration</a></li>
+                    <li class="active"><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vendor Registration - Unity Celebrations</title>
@@ -13,13 +44,7 @@
       margin: 0;
       padding: 0;
     }
-    header, footer {
-      background-color: #3b0a58;
-      color: white;
-      text-align: center;
-      padding: 1.2rem;
-    }
-    iframe {
+      iframe {
       display: block;
       margin: 20px auto;
       border: none;
@@ -33,15 +58,40 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Vendor Registration</h1>
-    <p>Be part of Edmonton's Multicultural Celebration</p>
-  </header>
-
+  
   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdb-pmlM4uBh4rIpjkncWzdgFzT-9lyjd8FEzo2YOrEsuchvg/viewform?embedded=true">Loading…</iframe>
 
-  <footer>
-    <p>&copy; 2025 Unity Celebrations. All rights reserved.</p>
-  </footer>
+  <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/unity_celebrations_logo.png" alt="Unity Celebrations Logo" class="footer-logo-img">
+                    <p>Unity Celebrations</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="registration.html">Vendor Registration</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> celebrationsofunity@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> Sadaf Arshad: 780-224-8084</p>
+                    <p><i class="fas fa-phone"></i> Saurin Ajmeri: 780-803-8076</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> Unity Celebrations. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
